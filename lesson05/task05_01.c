@@ -1,7 +1,14 @@
 #include <stdio.h>
-	
-int main() {
+
+void bar() {
 	int n;
 	printf("Corrent adress of n: %p\n", &n);
-	return 0;
+}
+void foo() {
+	bar();
+}
+
+int main() {
+	foo();
+	bar();
 }
