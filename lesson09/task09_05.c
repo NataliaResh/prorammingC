@@ -14,16 +14,16 @@ int* scanArr(size_t *size, size_t *capasity) {
 	*size = 0;
 	int* arr = (int*) malloc(*capasity * sizeof(int));
 	checkNull(arr);
-	scanf("%d", &arr[*size]);
-	while (arr[*size] != 0) {
-		*size += 1;
+	do {
+		scanf("%d", &arr[*size]);
+		(*size)++;
 		if (*size == *capasity) {
 			*capasity *= 2;
 			arr = (int*) realloc(arr, *capasity * sizeof(int));
 			checkNull(arr);
 		}
-		scanf("%d", &arr[*size]);
-	}
+	} while (arr[*size - 1] != 0);
+	(*size)--;
 	return arr;
 }
 
