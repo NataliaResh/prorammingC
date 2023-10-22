@@ -17,13 +17,12 @@ int* scanArr(size_t *size, size_t *capasity) {
 	do {
 		scanf("%d", &arr[*size]);
 		(*size)++;
-		if (*size == *capasity) {
+		if (*size > *capasity) {
 			*capasity *= 2;
 			arr = (int*) realloc(arr, *capasity * sizeof(int));
 			checkNull(arr);
 		}
 	} while (arr[*size - 1] != 0);
-	(*size)--;
 	return arr;
 }
 
