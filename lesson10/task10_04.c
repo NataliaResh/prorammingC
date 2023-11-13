@@ -6,15 +6,15 @@
 
 jmp_buf buf;
 
-void exitOrJmp(int errorCode, jmp_buf *buf) {
-	if (*buf == NULL) {
+void exitOrJmp(int errorCode, jmp_buf buf) {
+	if (buf == NULL) {
 		exit(errorCode);
 	}
-	longjmp(*buf, errorCode);
+	longjmp(buf, errorCode);
 }
 
 
-int s2i(const char *str, char base, jmp_buf *buf) {
+int s2i(const char *str, char base, jmp_buf buf) {
 	if (base > 16 || base < 2) {
 		exitOrJmp(1, buf);
 	}
@@ -55,7 +55,7 @@ int s2i(const char *str, char base, jmp_buf *buf) {
 int main() {
 	int errCode = setjmp(buf);
 	if (!errCode) {
-		int n = s2i("12AD", 16, &buf);
+		int n = s2i("12AD", 16, buf);
 		printf("%d\n", n);
 	} else if (errCode == 1) {
 		printf("Incorect base\n");

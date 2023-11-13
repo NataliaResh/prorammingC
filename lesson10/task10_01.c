@@ -11,9 +11,6 @@ int isPalindrom(const char *str) {
 		while (end != start && *end == ' ') {
 			end--;
 		}
-		if (end - start <= 0) {
-			return 1;
-		}
 		if (*start != *end) {
 			return 0;
 		}
